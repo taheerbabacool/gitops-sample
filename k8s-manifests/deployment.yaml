@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-sample-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gitops-sample-app
+  template:
+    metadata:
+      labels:
+        app: gitops-sample-app
+    spec:
+      containers:
+      - name: app
+        image: taheerdocker/nodeimage:latest
+        ports:
+        - containerPort: 3000

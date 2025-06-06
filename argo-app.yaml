@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-sample-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/<your-username>/gitops-sample'
+    path: k8s-manifests
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
